@@ -1,17 +1,14 @@
 <script setup>
-import { useScroll } from '@vueuse/core'
-import{useCategoryStore} from '@/stores/category'
+import { useScroll } from "@vueuse/core";
+import { useCategoryStore } from "@/stores/category";
 
-const categoryStore = useCategoryStore()
+const categoryStore = useCategoryStore();
 
-
-
-const { y} = useScroll(window)
-
+const { y } = useScroll(window);
 </script>
 
 <template>
-  <div class="app-header-sticky " :class="{show:y>78}">
+  <div class="app-header-sticky" :class="{ show: y > 78 }">
     <div class="container">
       <RouterLink class="logo" to="/" />
       <!-- 导航区域 -->
@@ -19,8 +16,14 @@ const { y} = useScroll(window)
         <li class="home">
           <RouterLink to="/">首页</RouterLink>
         </li>
-        <li class="home" v-for="item in categoryStore.categoryList" :key="item.id">
-          <RouterLink to="/">{{ item.name }}</RouterLink>
+        <li
+          class="home"
+          v-for="item in categoryStore.categoryList"
+          :key="item.id"
+        >
+          <RouterLink active-class="active" :to="`/category/${item.id}`">{{
+            item.name
+          }}</RouterLink>
         </li>
       </ul>
 

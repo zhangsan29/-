@@ -1,7 +1,12 @@
 import httpInstance from "@/utils/http"; //导入需不需要加{}取决于是不是默认导出 默认导出就不用加{}
-export function getBannerAPI() {
+export function getBannerAPI(params = {}) {
+  // 默认为1 商品为2
+  const { distributionSite = '1' } = params
   return httpInstance({
-    url: 'home/banner'
+    url: '/home/banner',
+    params: {
+      distributionSite
+    }
   })
 }
 
