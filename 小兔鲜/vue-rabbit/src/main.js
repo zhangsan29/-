@@ -8,6 +8,9 @@ import router from './router'
 
 import '@/styles/common.scss'
 import { lazyPlugin } from '@/directives'
+// 引入全局组件插件
+import { componentPlugin } from '@/components'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
 
 // import { getCategory } from '@/apis/testAPI'
@@ -16,10 +19,14 @@ import { lazyPlugin } from '@/directives'
 // })
 
 const app = createApp(App)
+const pinia = createPinia();
 
-app.use(createPinia())
+pinia.use(piniaPluginPersistedstate);
+
+app.use(pinia)
 app.use(router)
 app.use(lazyPlugin)
+app.use(componentPlugin)
 
 app.mount('#app')
 
