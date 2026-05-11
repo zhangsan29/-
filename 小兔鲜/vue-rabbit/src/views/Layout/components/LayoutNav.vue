@@ -4,6 +4,13 @@ import { useUserStore } from "@/stores/user";
 const userStore = useUserStore();
 
 const router = useRouter();
+
+const confirm = () => {
+  //1.清除用户信息 触发action
+  userStore.clearUserInfo();
+  //2.跳转到登录页
+  router.push("/login");
+};
 </script>
 
 <template>
@@ -21,6 +28,7 @@ const router = useRouter();
           </li>
           <li>
             <el-popconfirm
+              @confirm="confirm"
               title="确认退出吗?"
               confirm-button-text="确认"
               cancel-button-text="取消"
